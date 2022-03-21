@@ -4,7 +4,7 @@
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int cornerrad = 5;
-static const int user_bh            = 40;
+static const int user_bh            = 35;
 static const unsigned int gappih    = 10;
 static const unsigned int gappiv    = 10;
 static const unsigned int gappoh    = 10;
@@ -14,7 +14,8 @@ static const int sidepad            = 10;       /* horizontal padding of bar */
 static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
-static const char *fonts[]          = { "FiraCode Nerd Font:style=Retina:size=10"};
+static const char *fonts[]          = { "FiraCode Nerd Font:style=Retina:size=10",
+                                        "Material Design Icons-Regular:size=10"};
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#FFFFFF";
 static const char col_gray2[]       = "#050505";
@@ -33,7 +34,7 @@ static const int ulineall 		= 0;	/* 1 to show underline on all tags, 0 for just 
 
 
 /* tagging */
-static const char *tags[] = { "web", "dev", "msc"};
+static const char *tags[] = { "󰛸", "󰝡", "󰀹"};
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -52,8 +53,8 @@ static const int resizehints = 0;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "t",      tile },    /* first entry is default */
-	{ "f",      NULL },    /* no layout function means floating behavior */
+	{ "󰕰",      tile },    /* first entry is default */
+	{ "󰹙",      NULL },    /* no layout function means floating behavior */
 	{ "m",      monocle },
 };
 
@@ -81,6 +82,9 @@ static Key keys[] = {
   { MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_o,      spawn,          {.v = output_to_hdmi } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = output_to_screen } },
+  { MODKEY,			                  XK_minus,	 spawn,		       SHCMD("amixer -D pulse set Master 10%-") },
+	{ MODKEY,			                  XK_equal,	 spawn,		       SHCMD("amixer -D pulse set Master 10%+") },
+  { MODKEY|ShiftMask,             XK_space,  spawn,          SHCMD("/bin/sh -c \"(setxkbmap -query | grep -q \\\"layout:\\s\\+us\\\") && setxkbmap ru || setxkbmap us\"") },
   { MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
